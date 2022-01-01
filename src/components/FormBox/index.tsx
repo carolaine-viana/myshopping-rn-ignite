@@ -11,18 +11,25 @@ export function FormBox() {
 
   async function handleProductAdd(){
       //por padrao o documento vai ser cadastrado como falso
-      firestore().collection('products').add({description, quantity, done: false})
+      //id personalizado = depois do collection coloca .doc('mycustomid').set no lugar do add
+      firestore()
+      .collection('products')
+      .add({
+        description,
+        quantity,
+        done: false,
+        createAt: firestore.FieldValue.serverTimestamp() //data de qnd o doc foi criado
+      })
       .then(() => {
         Alert.alert('Produto adicionado com sucesso')
       }).catch((error) => console.error(error))
   }
   return (
-    <Input
-    placeholder="Nome do produto"
-    size="medium"
     <Container>
+      <Input
+        placeholder="Nome do produto"
+        size="medium"
         onChangeText={setDescription}
-
       />
 
       <Input

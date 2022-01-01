@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Photo } from '../../components/Photo';
+import storage from '@react-native-firebase/app';
 
 import { Container, Content, Progress, Transferred } from './styles';
 
@@ -26,6 +27,11 @@ export function Upload() {
     }
   };
 
+  async function handleUpload(){
+    const fileName = new Date().getTime()
+
+  }
+
   return (
     <Container>
       <Header title="Lista de compras" />
@@ -35,7 +41,7 @@ export function Upload() {
 
         <Button
           title="Fazer upload"
-          onPress={() => { }}
+          onPress={handlePickImage}
         />
 
         <Progress>
